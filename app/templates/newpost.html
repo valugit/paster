@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class="flassPopup">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<h2>New post</h2>
+<div class="newpost">
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.title() }}
+            {% for error in form.title.errors %}
+            <span class="error">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.content() }}
+            {% for error in form.content.errors %}
+            <span class="error">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.path() }}
+            {% for error in form.path.errors %}
+            <span class="error">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        {{ form.submit() }}
+    </form>
+</div>
+
+{% endblock %}
